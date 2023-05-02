@@ -8,6 +8,8 @@ export default function calendar({ target }) {
   let month = 5;
 
   calendar.setAttribute("class", "calendar");
+  thead.setAttribute("class", "flex px-2.5");
+  
 
   thead.innerHTML = `
     <tr>
