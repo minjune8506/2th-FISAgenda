@@ -9,3 +9,27 @@ main {
   justify-content: center;
   align-items: center;
 }
+
+.header-td {
+  @apply p-3 text-left text-gray-400 text-sm;
+}
+
+.table-border {
+  @apply border-solid border border-gray-300;
+}
+
+.content-top {
+  @apply h-1/3 flex justify-between;
+}
+
+.content-top-padding {
+  @apply p-2;
+}
+
+td {
+  @apply p-2;
+}
+
+col {
+  width: 200px;
+}
