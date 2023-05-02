@@ -1,0 +1,21 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  gap: 1px;
+
+  width: 1440px;
+  height: 850px;
+  left: 0px;
+  top: 98px;
+
+  /* background: #e6e6e6; */
+  background-color: red;
+  border-radius: 8px;
+}
+
+table {
+  border: 1px solid black;
+}
