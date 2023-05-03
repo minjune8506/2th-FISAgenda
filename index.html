@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/styles/style.css" />
     <link rel="stylesheet" href="dist/output.css" />
+    <script src="./src/components/calendar.js" defer></script>
     <title>Document</title>
   </head>
   <body class="h-screen">
@@ -21,14 +22,14 @@
       <div
         class="flex gap-2 h-14 text-center items-center w-full justify-center space-x-40 border border-neutral-200"
       >
-        <button id="prevButton"><</button>
+        <button id="prevButton"></button>
         <div class="text-2xl flex gap-14">
           <select id="month-select">
-            <option >May</option>
-            <option >June</option>
-            <option >July</option>
-            <option >August</option>
-            <option >September</option>
+            <option selected>May</option>
+            <option selected>June</option>
+            <option selected>July</option>
+            <option selected>Auguest</option>
+            <option selected>September</option>
           </select>
           <span>2022</span>
         </div>
@@ -37,13 +38,13 @@
 
       <table class="w-3/4 h-4/5 table-border">
         <colgroup>
-          <col>
-          <col>
-          <col>
-          <col>
-          <col>
-          <col>
-          <col>
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
         </colgroup>
         <thead>
           <tr class="table-border">
@@ -56,275 +57,9 @@
             <td class="header-td table-border">Saturday</td>
           </tr>
         </thead>
-        <tbody id="calendar-body">
-          <tr>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">30</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-                <div class="content-top">
-                  <div class="text-xl days">1</div>
-                  <div>날씨</div>
-                </div>
-                <div class="h-2/3">lavel</div>
-              </td>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">2</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">3</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">4</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">5</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">6</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">7</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-                <div class="content-top">
-                  <div class="text-xl days">8</div>
-                  <div>날씨</div>
-                </div>
-                <div class="h-2/3">lavel</div>
-              </td>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">9</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">10</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">11</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">12</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">13</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">14</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-                <div class="content-top">
-                  <div class="text-xl days">15</div>
-                  <div>날씨</div>
-                </div>
-                <div class="h-2/3">lavel</div>
-              </td>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">16</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">17</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">18</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">19</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">20</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">21</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-                <div class="content-top">
-                  <div class="text-xl days">22</div>
-                  <div>날씨</div>
-                </div>
-                <div class="h-2/3">lavel</div>
-              </td>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">23</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">24</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">25</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">26</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">27</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">28</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-                <div class="content-top">
-                  <div class="text-xl days">29</div>
-                  <div>날씨</div>
-                </div>
-                <div class="h-2/3">lavel</div>
-              </td>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">30</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">31</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">1</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="content-top">
-                <div class="text-xl days">2</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-            <td class="table-border">
-              <div class="h-1/3 flex justify-between">
-                <div class="text-xl days">3</div>
-                <div>날씨</div>
-              </div>
-              <div class="h-2/3">lavel</div>
-            </td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </table>
     </main>
-    <script type="module" src="index.js"></script>
-    <script src="src/js/calendarButton.js"></script>
+    <!-- <script type="module" src="index.js"></script> -->
   </body>
 </html>
