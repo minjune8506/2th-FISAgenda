@@ -1,3 +1,5 @@
+import { getLabel } from '../js/calendarLabel.js';
+
 const SUNDAY = 0;
 const SATURDAY = 6;
 const NUMBER_OF_DAYS_OF_WEEK = 7;
@@ -16,10 +18,9 @@ function getLastDateOfMonth(year, monthIdx) {
 	return new Date(year, monthIdx + 1, 0).getDate();
 }
 
-function createDateElement(date, day) {
+function createDateElement(date, day, labels = []) {
 	const td = document.createElement('td');
 	td.classList = ['table-border'];
-
 	const wrapDiv = document.createElement('div');
 	wrapDiv.classList = ['content-top'];
 
@@ -27,7 +28,16 @@ function createDateElement(date, day) {
 	dateDiv.classList = ['text-xl, font-bold'];
 
 	const label = document.createElement('div');
-	label.classList = ['h-2/3'];
+	label.classList = [`h-2/3`];
+
+	// label 안에 요소 추가
+	if (labels.length !== 0) {
+		labels.forEach((v) => {
+			label.innerHTML = `
+	  <div class='${v[1]}'>${v[0]}</div>
+	  `;
+		});
+	}
 
 	if (day === SUNDAY) {
 		dateDiv.classList.add('text-red-800');
@@ -81,12 +91,16 @@ export default function createCalendar(year, monthIdx) {
 	let tr = tbody.firstElementChild ?? document.createElement('tr');
 
 	for (let i = 1; i <= lastDate; i += 1) {
+		// 라벨 찾고,
+		const date = new Date(year, monthIdx, i);
+		const label = getLabel(date);
+		// console.log(label.length);
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
 			tbody.appendChild(tr);
 		}
 		const day = new Date(year, monthIdx, i).getDay();
-		const el = createDateElement(i, day);
+		const el = createDateElement(i, day, label);
 		tr.appendChild(el);
 	}
 
