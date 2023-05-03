@@ -1,4 +1,5 @@
 import { getWeatherImages } from './weather.js';
+import { getLabel } from '../js/calendarLabel.js';
 
 const SUNDAY = 0;
 const SATURDAY = 6;
@@ -28,7 +29,16 @@ function createDateElement(date, day, weatherImages) {
 	dateDiv.classList = ['text-xl, font-bold'];
 
 	const label = document.createElement('div');
-	label.classList = ['h-2/3'];
+	label.classList = [`h-2/3 label-container`];
+
+	// label 안에 요소 추가
+	if (labels.length !== 0) {
+		labels.forEach((v) => {
+			label.innerHTML = `
+	  <div class='${v[1]}'><p>${v[0]}</p></div>
+	  `;
+		});
+	}
 
 	if (day === SUNDAY) {
 		dateDiv.classList.add('text-red-800');
@@ -74,6 +84,8 @@ function createPrefix(year, monthIdx, weeks) {
 		const date = pastMonthLastDate - (firstDay - i - 1);
 		const day = new Date(year, monthIdx - 1, date).getDay();
 		const el = createDateElement(date, day);
+		el.classList.add('bg-gray-200');
+		el.classList.add('opacity-30');
 		tr.appendChild(el);
 	}
 }
@@ -86,6 +98,8 @@ function createSuffix(year, monthIdx, weeks) {
 	for (let i = 1; i <= 6 - lastDay; i += 1) {
 		const day = new Date(year, monthIdx + 1, i).getDay();
 		const el = createDateElement(i, day);
+		el.classList.add('bg-gray-200');
+		el.classList.add('opacity-30');
 		tr.appendChild(el);
 	}
 }
@@ -125,6 +139,10 @@ export default async function createCalendar(year, monthIdx) {
 	let tr = tbody.firstElementChild ?? document.createElement('tr');
 
 	for (let i = 1; i <= lastDate; i += 1) {
+		// 라벨 찾고,
+		const date = new Date(year, monthIdx, i);
+		const label = getLabel(date);
+		// console.log(label.length);
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
 			tr.classList = [`h-1/${weeks}`];
