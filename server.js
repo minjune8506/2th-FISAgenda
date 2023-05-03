@@ -4,13 +4,14 @@ const cors = require('cors')
 const fb = require('firebase/database')
 const admin = require('firebase/app')
 const db= require('./config.js');
+const cors = require('cors')
 const database = admin.initializeApp(db)
 
 const realTimeDatabase = fb.getDatabase(database)
 require("dotenv").config();
 
-const CITY_NAME = "Seoul";
-const APP_ID = process.env.APP_ID;
+const CITY_NAME = 'Seoul';
+const { WEATHER_APP_ID } = process.env;
 const MORNING = 6;
 const NIGHT = 18;
 
@@ -22,11 +23,12 @@ app.use(cors())
 // 미들웨어 설정
 app.use(express.json()) //역질렬화 처리용 모듈
 
-app.get("/weather", async (req, res, next) => {
-	const url = `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${APP_ID}&lang=kr`;
+
+app.get('/weather', async (req, res, next) => {
+	const url = `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${WEATHER_APP_ID}&lang=kr`;
 	try {
 		const data = await axios.get(url);
-		const list = data.data.list;
+		const { list } = data.data;
 		const weathers = list
 			.filter((l) => {
 				const date = new Date(l.dt_txt);
@@ -35,9 +37,13 @@ app.get("/weather", async (req, res, next) => {
 				}
 				return false;
 			})
-			.map((m) => ({ id: m.weather[0].id, description: m.weather[0].main }));
+			.map((m) => ({
+				id: m.weather[0].id,
+				description: m.weather[0].main,
+			}));
 		res.json(weathers); // send response
 	} catch (err) {
+		console.error(err);
 		next(err.message);
 	}
 });

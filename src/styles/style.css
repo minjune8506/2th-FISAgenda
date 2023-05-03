@@ -4,14 +4,8 @@
 
 @import "calendar.css";
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .header-td {
-  @apply p-3 text-left text-gray-400 text-sm;
+  @apply py-3 text-left text-gray-400 text-sm;
 }
 
 .table-border {
@@ -65,4 +59,15 @@ col {
 
 .label-container{
   @apply pt-2
+}
+
+button > img{
+  @apply w-8
+}
+button:disabled >img{
+  @apply opacity-30
+}
+
+select{
+  cursor: pointer;
 }
