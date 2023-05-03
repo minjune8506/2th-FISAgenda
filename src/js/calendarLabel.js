@@ -65,7 +65,6 @@ export const getLabel = (day) => {
 	let title = `&nbsp;`;
 	curriculum.forEach((v) => {
 		if (v.start <= day && v.end >= day) {
-			console.log('1', v);
 			let className = `${v.edu} label`;
 			if (day.getDate() === v.start.getDate()) {
 				className = `start ${className}`;

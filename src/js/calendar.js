@@ -18,92 +18,6 @@ function getLastDateOfMonth(year, monthIdx) {
 	return new Date(year, monthIdx + 1, 0).getDate();
 }
 
-function createDateElement(date, day, weatherImages, labels = []) {
-	const td = document.createElement('td');
-	td.classList = ['table-border'];
-
-	const topDiv = document.createElement('div');
-	topDiv.classList = ['content-top'];
-
-	const dateDiv = document.createElement('div');
-	dateDiv.classList = ['text-xl, font-bold'];
-
-	const label = document.createElement('div');
-	label.classList = [`h-2/3 label-container`];
-
-	// label 안에 요소 추가
-	if (labels.length !== 0) {
-		labels.forEach((v) => {
-			label.innerHTML = `
-	  <div class='${v[1]}'><p>${v[0]}</p></div>
-	  `;
-		});
-	}
-
-	if (day === SUNDAY) {
-		dateDiv.classList.add('text-red-800');
-	}
-	if (day === SATURDAY) {
-		dateDiv.classList.add('text-blue-800');
-	}
-	dateDiv.textContent = date;
-
-	topDiv.appendChild(dateDiv);
-
-	const weatherDiv = document.createElement('div');
-	weatherDiv.classList = ['flex'];
-	const today = new Date();
-	const diff = date - today.getDate();
-	if (diff < 5 && diff >= 0 && weatherImages) {
-		const index = diff * 2;
-
-		const morning = document.createElement('img');
-		morning.src = `src/images/${weatherImages[index].white}`;
-		morning.classList = ['mr-2']
-		const night = document.createElement('img');
-		night.src = `src/images/${weatherImages[index + 1].white}`;
-
-		weatherDiv.appendChild(morning);
-		weatherDiv.appendChild(night);
-	}
-
-	topDiv.appendChild(weatherDiv);
-	td.appendChild(topDiv);
-	td.appendChild(label);
-	return td;
-}
-
-function createPrefix(year, monthIdx, weeks) {
-	const firstDay = getFirstDayOfMonth(year, monthIdx);
-	const pastMonthLastDate = getLastDateOfMonth(year, monthIdx - 1);
-	const tr = document.createElement('tr');
-	tr.classList = [`h-1/${weeks}`];
-
-	tbody.appendChild(tr);
-	for (let i = 0; i < firstDay; i += 1) {
-		const date = pastMonthLastDate - (firstDay - i - 1);
-		const day = new Date(year, monthIdx - 1, date).getDay();
-		const el = createDateElement(date, day);
-		el.classList.add('bg-gray-200');
-		el.classList.add('opacity-30');
-		tr.appendChild(el);
-	}
-}
-
-function createSuffix(year, monthIdx, weeks) {
-	const lastDay = getLastDayOfMonth(year, monthIdx);
-	const tr = tbody.lastElementChild;
-	tr.classList = [`h-1/${weeks}`];
-
-	for (let i = 1; i <= 6 - lastDay; i += 1) {
-		const day = new Date(year, monthIdx + 1, i).getDay();
-		const el = createDateElement(i, day);
-		el.classList.add('bg-gray-200');
-		el.classList.add('opacity-30');
-		tr.appendChild(el);
-	}
-}
-
 function getWeeksInMonth(year, month) {
 	// get the number of days in the month
 	const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -116,6 +30,119 @@ function getWeeksInMonth(year, month) {
 	const numWeeks = Math.ceil(daysRemaining / 7) + 1;
 
 	return numWeeks;
+}
+
+function createDateDiv(date, day) {
+	const dateDiv = document.createElement('div');
+	dateDiv.classList.add('ml-2');
+	dateDiv.classList.add('text-2xl');
+
+	if (day === SUNDAY) {
+		dateDiv.classList.add('text-red-800');
+	}
+	if (day === SATURDAY) {
+		dateDiv.classList.add('text-blue-800');
+	}
+	dateDiv.textContent = date;
+
+	return dateDiv;
+}
+
+function createWeatherDiv(date, weatherImages) {
+	const weatherDiv = document.createElement('div');
+	weatherDiv.classList = ['flex'];
+
+	const today = new Date();
+	const diff = date - today.getDate();
+	if (diff < 5 && diff >= 0 && weatherImages) {
+		const index = diff * 2;
+
+		const morning = document.createElement('img');
+		morning.src = `src/images/${weatherImages[index].white}`;
+		morning.classList = ['mr-2'];
+		const night = document.createElement('img');
+		night.src = `src/images/${weatherImages[index + 1].white}`;
+		night.classList = ['mr-2'];
+
+		weatherDiv.appendChild(morning);
+		weatherDiv.appendChild(night);
+	}
+	return weatherDiv;
+}
+
+function createTopDiv(date, day, weatherImages) {
+	const topDiv = document.createElement('div');
+	topDiv.classList = ['content-top'];
+
+	// add date
+	topDiv.appendChild(createDateDiv(date, day));
+
+	// add weather
+	topDiv.appendChild(createWeatherDiv(date, weatherImages));
+
+	return topDiv;
+}
+
+function createLabels(labels) {
+	const labelDivs = labels.map((v) => {
+		const label = document.createElement('div');
+		label.classList = [];
+		label.innerHTML = `
+		  <div class='${v[1]}'><p>${v[0]}</p></div>
+		  `;
+		return label;
+	});
+	return labelDivs;
+}
+
+function createDateElement(date, day, weatherImages, labels = []) {
+	const td = document.createElement('td');
+	td.classList = ['table-border'];
+
+	const topDiv = createTopDiv(date, day, weatherImages);
+	td.appendChild(topDiv);
+
+	const content = document.createElement('div');
+	content.classList.add('h-2/3');
+	content.classList.add('label-container');
+	td.appendChild(content);
+
+	// add label
+	createLabels(labels).forEach((label) => content.appendChild(label));
+
+	return td;
+}
+
+function createPrefix(year, monthIdx, weeks) {
+	const firstDay = getFirstDayOfMonth(year, monthIdx);
+	const pastMonthLastDate = getLastDateOfMonth(year, monthIdx - 1);
+	const tr = document.createElement('tr');
+	tr.classList.add(`h-1/${weeks}`);
+
+	tbody.appendChild(tr);
+
+	for (let i = 0; i < firstDay; i += 1) {
+		const date = pastMonthLastDate - (firstDay - i - 1);
+		const day = new Date(year, monthIdx - 1, date);
+		const el = createDateElement(day.getDate(), day.getDay(), null, getLabel(day));
+		el.classList.add('bg-gray-200');
+		el.classList.add('opacity-30');
+		tr.appendChild(el);
+	}
+}
+
+function createSuffix(year, monthIdx, weeks) {
+	const lastDay = getLastDayOfMonth(year, monthIdx);
+	const tr = tbody.lastElementChild;
+	tr.classList = [`h-1/${weeks}`];
+
+	for (let i = 1; i <= 6 - lastDay; i += 1) {
+		const day = new Date(year, monthIdx + 1, i);
+		const el = createDateElement(i, day.getDay(), null, getLabel(day));
+		el.classList.add('bg-gray-200');
+		el.classList.add('opacity-30');
+		tr.appendChild(el);
+	}
 }
 
 export default async function createCalendar(year, monthIdx) {
@@ -139,17 +166,18 @@ export default async function createCalendar(year, monthIdx) {
 	let tr = tbody.firstElementChild ?? document.createElement('tr');
 
 	for (let i = 1; i <= lastDate; i += 1) {
-		// 라벨 찾고,
 		const date = new Date(year, monthIdx, i);
-		const label = getLabel(date);
-		// console.log(label.length);
+
+		const labels = getLabel(date);
+
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
 			tr.classList = [`h-1/${weeks}`];
 			tbody.appendChild(tr);
 		}
+
 		const day = new Date(year, monthIdx, i).getDay();
-		const el = createDateElement(i, day, weatherImages, label);
+		const el = createDateElement(i, day, weatherImages, labels);
 		tr.appendChild(el);
 	}
 

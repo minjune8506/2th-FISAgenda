@@ -11,9 +11,9 @@
     <script type="module" src="./src/js/calendarButton.js" defer></script>
     <script type="module" src="./src/js/weather.js" defer></script>
   </head>
-  <body class="h-full">
+  <body class="h-full flex flex-col">
     <header>
-		<div class="flex justify-center my-2">
+		<div class="flex justify-center mb-2 pt-2">
       		<img src="src/images/logo.png" class="w-8, h-8"/>
 			<div class="text-2xl font-bold inline pl-2">
 				<span class="text-blue-700">WOORI FISA</span>
@@ -22,9 +22,9 @@
 		</div>
     </header>
 
-    <main id="App" class="flex flex-col h-screen">
+    <main id="App" class="flex flex-col flex-1">
       <div
-        class="flex gap-2 h-14 text-center items-center w-full justify-between space-x-40 border border-neutral-200 px-40"
+        class="flex gap-2 h-12 text-center items-center w-full justify-between space-x-40 border border-neutral-200 px-40"
       >
         <button id="prevButton"><img src="src/images/prevButton.svg" alt="prevButton"></button>
         <div class="text-2xl flex gap-14">
@@ -40,7 +40,7 @@
         <button id="nextButton"><img src="src/images/nextButton.svg" alt="nextButton"></button>
       </div>
 
-      <table class="w-full h-5/6 table-border table-fixed border-collapse">
+      <table class="w-full table-border table-fixed border-collapse flex-1">
         <thead>
           <tr class="table-border font-bold">
             <td class="header-td table-border w-1/7">Sunday</td>
