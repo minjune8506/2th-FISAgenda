@@ -4,14 +4,8 @@
 
 @import "calendar.css";
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .header-td {
-  @apply p-3 text-left text-gray-400 text-sm;
+  @apply py-3 text-left text-gray-400 text-sm;
 }
 
 .table-border {

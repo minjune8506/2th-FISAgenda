@@ -27,19 +27,7 @@ async function getWeather() {
 	return json;
 }
 
-async function convertToImg() {
+export async function getWeatherImages() {
 	const data = await getWeather();
 	return data.map((m) => weatherMap.get(m.description));
 }
-
-const body = document.getElementsByTagName('body').item(0);
-convertToImg().then((res) => {
-	res.forEach((item) => {
-		const imgDark = document.createElement('img');
-		imgDark.src = `/public/images/${item.dark}`;
-		const imgWhite = document.createElement('img');
-		imgWhite.src = `/public/images/${item.white}`;
-		body.appendChild(imgDark);
-		body.appendChild(imgWhite);
-	});
-});

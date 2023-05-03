@@ -1,4 +1,4 @@
-import createCalendar from '../components/calendar';
+import createCalendar from './calendar.js';
 
 const MONTHS = [
 	'Janyary',
