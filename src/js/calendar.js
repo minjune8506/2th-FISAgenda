@@ -168,7 +168,7 @@ export default async function createCalendar(year, monthIdx) {
 	for (let i = 1; i <= lastDate; i += 1) {
 		const date = new Date(year, monthIdx, i);
 
-		const labels = getLabel(date);
+		const labels = await getLabel(date)
 
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
