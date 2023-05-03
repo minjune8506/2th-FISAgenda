@@ -1,11 +1,11 @@
 export default {
-  content: ["./index.html"],
-  darkMode: "class",
-  theme: {
-    extend: {
-      fontFamily: {
-        nanum: ["Nanum Gothic"],
-      },
-    },
-  },
+	content: ["./index.html", "./src/**/*.js"],
+	darkMode: "class",
+	theme: {
+		extend: {
+			fontFamily: {
+				nanum: ["Nanum Gothic"],
+			},
+		},
+	},
 };
