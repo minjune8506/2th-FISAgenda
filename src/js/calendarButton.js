@@ -26,21 +26,32 @@ const monthChange = () => {
 	month = MONTHS.indexOf(monthSelect.value);
 	createCalendar(YEAR, month);
 };
-
-// event
-nextBtn.addEventListener('click', () => {
+const addMonth = () => {
 	month += 1;
-	if (month > 8) month = 8;
+	nextBtn.disabled = false;
+	prevBtn.disabled = false;
+	if (month > 8) {
+		month = 8;
+		nextBtn.disabled = true;
+	}
 	monthSelect.value = MONTHS[month];
 	createCalendar(YEAR, month);
-});
-
-prevBtn.addEventListener('click', () => {
+};
+const subMonth = () => {
 	month -= 1;
-	if (month < 4) month = 4;
+	nextBtn.disabled = false;
+	prevBtn.disabled = false;
+	if (month < 4) {
+		month = 4;
+		prevBtn.disabled = true;
+	}
 	createCalendar(YEAR, month);
 	monthSelect.value = MONTHS[month];
-});
+};
+// event
+nextBtn.addEventListener('click', addMonth);
+
+prevBtn.addEventListener('click', subMonth);
 
 monthSelect.addEventListener('change', monthChange);
 
