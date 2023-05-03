@@ -10,7 +10,7 @@ const realTimeDatabase = fb.getDatabase(database)
 require("dotenv").config();
 
 const CITY_NAME = 'Seoul';
-const { APP_ID } = process.env;
+const { WEATHER_APP_ID } = process.env;
 const MORNING = 6;
 const NIGHT = 18;
 
@@ -20,7 +20,7 @@ const port = 3000;
 app.use(cors());
 
 app.get('/weather', async (req, res, next) => {
-	const url = `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${APP_ID}&lang=kr`;
+	const url = `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${WEATHER_APP_ID}&lang=kr`;
 	try {
 		const data = await axios.get(url);
 		const { list } = data.data;
@@ -38,6 +38,7 @@ app.get('/weather', async (req, res, next) => {
 			}));
 		res.json(weathers); // send response
 	} catch (err) {
+		console.error(err);
 		next(err.message);
 	}
 });

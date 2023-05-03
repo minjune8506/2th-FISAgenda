@@ -18,7 +18,7 @@ function getLastDateOfMonth(year, monthIdx) {
 	return new Date(year, monthIdx + 1, 0).getDate();
 }
 
-function createDateElement(date, day, weatherImages) {
+function createDateElement(date, day, weatherImages, labels = []) {
 	const td = document.createElement('td');
 	td.classList = ['table-border'];
 
@@ -149,7 +149,7 @@ export default async function createCalendar(year, monthIdx) {
 			tbody.appendChild(tr);
 		}
 		const day = new Date(year, monthIdx, i).getDay();
-		const el = createDateElement(i, day, weatherImages);
+		const el = createDateElement(i, day, weatherImages, label);
 		tr.appendChild(el);
 	}
 
