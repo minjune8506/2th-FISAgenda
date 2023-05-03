@@ -60,3 +60,14 @@ col {
 .label-container{
   @apply pt-2
 }
+
+button > img{
+  @apply w-8
+}
+button:disabled >img{
+  @apply opacity-30
+}
+
+select{
+  cursor: pointer;
+}
