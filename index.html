@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="src/styles/style.css" />
+		<link rel="stylesheet" href="dist/output.css" />
+		<script src="./src/components/calendar.js" defer></script>
+		<title>Document</title>
+	</head>
+	<body class="h-screen">
+		<header
+			class="flex text-center text-4xl items-center justify-center pt-4"
+		>
+			<img src="src/images/logo.png" />
+			<h1 class="ml-9 font-bold storke stroke-1 storke-black">
+				<span class="text-blue-700">WOORI FISA</span>
+				<span class="text-purple-800"> GENDA</span>
+			</h1>
+		</header>
+
+		<main id="App" class="flex flex-col h-4/5">
+			<div
+				class="flex gap-2 h-14 text-center items-center w-full justify-center space-x-40 border border-neutral-200"
+			>
+				<button id="prevButton"></button>
+				<div class="text-2xl flex gap-14">
+					<select>
+						<option selected>May</option>
+						<option selected>June</option>
+						<option selected>July</option>
+						<option selected>Auguest</option>
+						<option selected>September</option>
+					</select>
+					<span>2022</span>
+				</div>
+				<button id="nextButton">></button>
+			</div>
+
+			<table class="w-3/4 h-4/5 table-border">
+				<colgroup>
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+				</colgroup>
+				<thead>
+					<tr class="table-border">
+						<td class="header-td table-border">Sunday</td>
+						<td class="header-td table-border">Monday</td>
+						<td class="header-td table-border">Tuesday</td>
+						<td class="header-td table-border">Wednesday</td>
+						<td class="header-td table-border">Thursday</td>
+						<td class="header-td table-border">Friday</td>
+						<td class="header-td table-border">Saturday</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</main>
+		<!-- <script type="module" src="index.js"></script> -->
+	</body>
+</html>
