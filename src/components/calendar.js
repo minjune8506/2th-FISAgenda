@@ -28,13 +28,13 @@ function createDateElement(date, day, labels = []) {
 	dateDiv.classList = ['text-xl, font-bold'];
 
 	const label = document.createElement('div');
-	label.classList = [`h-2/3`];
+	label.classList = [`h-2/3 label-container`];
 
 	// label 안에 요소 추가
 	if (labels.length !== 0) {
 		labels.forEach((v) => {
 			label.innerHTML = `
-	  <div class='${v[1]}'>${v[0]}</div>
+	  <div class='${v[1]}'><p>${v[0]}</p></div>
 	  `;
 		});
 	}
@@ -63,6 +63,8 @@ function createPrefix(year, monthIdx) {
 		const date = pastMonthLastDate - (firstDay - i - 1);
 		const day = new Date(year, monthIdx - 1, date).getDay();
 		const el = createDateElement(date, day);
+		el.classList.add('bg-gray-200');
+		el.classList.add('opacity-30');
 		tr.appendChild(el);
 	}
 }
@@ -74,6 +76,8 @@ function createSuffix(year, monthIdx) {
 	for (let i = 1; i <= 6 - lastDay; i += 1) {
 		const day = new Date(year, monthIdx + 1, i).getDay();
 		const el = createDateElement(i, day);
+		el.classList.add('bg-gray-200');
+		el.classList.add('opacity-30');
 		tr.appendChild(el);
 	}
 }

@@ -27,9 +27,42 @@ main {
 }
 
 td {
-  @apply p-2;
+  @apply pt-2 pb-2 pl-0 pr-0  ;
 }
 
 col {
   width: 200px;
+}
+
+
+.label{
+  @apply  text-sm text-center top-auto bottom-5  ;
+}
+
+.start{
+  @apply ml-2 rounded-l-3xl
+}
+
+.end{
+  @apply mr-2 rounded-r-3xl
+}
+
+.front{
+  @apply bg-red-300
+}
+
+.seminar{
+  @apply bg-blue-300
+}
+
+.back{
+  @apply bg-green-300
+}
+
+.cloud{
+  @apply bg-purple-300
+}
+
+.label-container{
+  @apply pt-2
 }
