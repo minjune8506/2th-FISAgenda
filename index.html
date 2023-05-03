@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-screen">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,61 +7,53 @@
     <link rel="stylesheet" href="src/styles/style.css" />
     <link rel="stylesheet" href="dist/output.css" />
     <title>Document</title>
+	<script type="module" src="./src/js/calendar.js" defer></script>
+    <script type="module" src="./src/js/calendarButton.js" defer></script>
+    <script type="module" src="./src/js/weather.js" defer></script>
   </head>
-  <body class="h-screen">
-    <header class="flex text-center text-4xl items-center justify-center pt-4">
-      <img src="src/images/logo.png" />
-      <h1 class="ml-9 font-bold storke stroke-1 storke-black">
-        <span class="text-blue-700">WOORI FISA</span>
-        <span class="text-purple-800"> GENDA</span>
-      </h1>
+  <body class="h-full">
+    <header>
+		<div class="flex justify-center my-2">
+      		<img src="src/images/logo.png" class="w-8, h-8"/>
+			<div class="text-2xl font-bold inline pl-2">
+				<span class="text-blue-700">WOORI FISA</span>
+				<span class="text-purple-800">GENDA</span>
+			</div>
+		</div>
     </header>
 
-    <main id="App" class="flex flex-col h-4/5">
+    <main id="App" class="flex flex-col h-screen">
       <div
-        class="flex gap-2 h-14 text-center items-center w-full justify-center space-x-40 border border-neutral-200"
+        class="flex gap-2 text-center items-center w-full h-16 rounded-lg justify-center space-x-40 border border-neutral-200"
       >
-        <button id="prevButton"><</button>
+        <button id="prevButton">&lt;</button>
         <div class="text-2xl flex gap-14">
           <select id="month-select">
-            <option selected>May</option>
-            <option selected>June</option>
-            <option selected>July</option>
-            <option selected>August</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
             <option>September</option>
           </select>
-          <span>2022</span>
+          <span>2023</span>
         </div>
-        <button id="nextButton">></button>
+        <button id="nextButton">&gt;</button>
       </div>
 
-      <table class="w-3/4 h-4/5 table-border">
-        <colgroup>
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-        </colgroup>
+      <table class="w-full h-5/6 table-border table-fixed border-collapse">
         <thead>
-          <tr class="table-border">
-            <td class="header-td table-border">Sunday</td>
-            <td class="header-td table-border">Monday</td>
-            <td class="header-td table-border">Tuesday</td>
-            <td class="header-td table-border">Wednesday</td>
-            <td class="header-td table-border">Thursday</td>
-            <td class="header-td table-border">Friday</td>
-            <td class="header-td table-border">Saturday</td>
+          <tr class="table-border font-bold">
+            <td class="header-td table-border w-1/7">Sunday</td>
+            <td class="header-td table-border w-1/7">Monday</td>
+            <td class="header-td table-border w-1/7">Tuesday</td>
+            <td class="header-td table-border w-1/7">Wednesday</td>
+            <td class="header-td table-border w-1/7">Thursday</td>
+            <td class="header-td table-border w-1/7">Friday</td>
+            <td class="header-td table-border w-1/7">Saturday</td>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
     </main>
-    <!-- <script type="module" src="index.js"></script> -->
-    <script type="module" src="./src/components/calendar.js"></script>
-    <script type="module" src="src/js/calendarButton.js"></script>
-    <script type="module" src="src/js/calendarLabel.js"></script>
   </body>
 </html>
