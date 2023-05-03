@@ -82,7 +82,7 @@ function createSuffix(year, monthIdx) {
 	}
 }
 
-export default function createCalendar(year, monthIdx) {
+export default async function createCalendar(year, monthIdx) {
 	tbody.replaceChildren();
 	const firstDay = getFirstDayOfMonth(year, monthIdx);
 	const lastDay = getLastDayOfMonth(year, monthIdx);
@@ -97,7 +97,9 @@ export default function createCalendar(year, monthIdx) {
 	for (let i = 1; i <= lastDate; i += 1) {
 		// 라벨 찾고,
 		const date = new Date(year, monthIdx, i);
-		const label = getLabel(date);
+
+		const label = await getLabel(date)
+		console.log(label);
 		// console.log(label.length);
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
@@ -113,4 +115,4 @@ export default function createCalendar(year, monthIdx) {
 	}
 }
 
-createCalendar(2023, 6);
+// createCalendar(2023, 6);
