@@ -1,4 +1,4 @@
-import { getSchedules } from "./app.js";
+import { getSchedules } from './app.js';
 const curriculum = await getSchedules();
 console.log(curriculum);
 
@@ -14,12 +14,12 @@ export const getLabel = (day) => {
 			// console.log('1', v);
 			let className = `${v.edu} label`;
 			if (day.getDate() === sDate.getDate()) {
-				className = `start ${className}`;
+				className = `${className} start`;
 				title = v.detail;
 			}
 			if (day.getDate() === eDate.getDate()) {
 				title = v.detail;
-				className = `end ${className}`;
+				className = `${className} end`;
 			}
 			result.push([title, className]);
 		}

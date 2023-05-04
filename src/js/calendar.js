@@ -50,7 +50,7 @@ function createDateDiv(date, day) {
 
 function createWeatherDiv(date, weatherImages) {
 	const weatherDiv = document.createElement('div');
-	weatherDiv.classList = ['flex'];
+	weatherDiv.classList = ['weather flex'];
 
 	const today = new Date();
 	const diff = date - today.getDate();
@@ -59,9 +59,11 @@ function createWeatherDiv(date, weatherImages) {
 
 		const morning = document.createElement('img');
 		morning.src = `src/images/${weatherImages[index].white}`;
+		morning.alt = `오전 날씨`;
 		morning.classList = ['mr-2'];
 		const night = document.createElement('img');
 		night.src = `src/images/${weatherImages[index + 1].white}`;
+		night.alt = `오후 날씨`;
 		night.classList = ['mr-2'];
 
 		weatherDiv.appendChild(morning);
@@ -87,7 +89,12 @@ function createLabels(labels) {
 	const labelDivs = labels.map((v) => {
 		const label = document.createElement('div');
 		label.innerHTML = `
-		  <div class='${v[1]}'><p>${v[0]}</p></div>
+		  <div class='${v[1]}'>
+		  	<p>${v[0]}</p>
+			<span class="label-tooltip">${v[1].split(' ')[0]}</span>
+
+		  </div>
+
 		  `;
 		return label;
 	});
