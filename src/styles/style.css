@@ -58,7 +58,7 @@ col {
 }
 
 .label-container{
-  @apply pt-2
+  @apply pt-2 relative
 }
 
 button > img{
@@ -92,4 +92,16 @@ select{
 
 .biz {
 	@apply bg-lime-300
+}
+
+.weather > img{
+  @apply w-9 h-9
+}
+
+.label-tooltip{
+  @apply bg-gray-500 text-white p-3 m-3 rounded-lg absolute top-2 left-3 opacity-0
+}
+
+.label:hover > .label-tooltip{
+  @apply opacity-100
 }
