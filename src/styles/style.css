@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "calendar.css";
+
+.header-td {
+  @apply py-3 text-left text-gray-400 text-sm;
+}
+
+.table-border {
+  @apply border-solid border border-gray-300;
+}
+
+.content-top {
+  @apply h-1/3 flex justify-between;
+}
+
+.content-top-padding {
+  @apply p-2;
+}
+
+td {
+  @apply pt-2 pb-2 pl-0 pr-0  ;
+}
+
+col {
+  width: 200px;
+}
+
+
+.label{
+  @apply  text-sm text-center top-auto bottom-5  ;
+}
+
+.start{
+  @apply ml-2 rounded-l-3xl
+}
+
+.end{
+  @apply mr-2 rounded-r-3xl
+}
+
+.front{
+  @apply bg-red-300
+}
+
+.seminar{
+  @apply bg-blue-300
+}
+
+.back{
+  @apply bg-green-300
+}
+
+.cloud{
+  @apply bg-purple-300
+}
+
+.label-container{
+  @apply pt-2 relative
+}
+
+button > img{
+  @apply w-8
+}
+button:disabled >img{
+  @apply opacity-30
+}
+
+select{
+  cursor: pointer;
+}
+
+.project {
+	@apply bg-orange-300
+
+}
+
+.experience {
+	@apply bg-pink-400
+
+}
+
+.lecture {
+	@apply bg-violet-300
+}
+
+.today {
+	@apply border-2 border-gray-400
+}
+
+.biz {
+	@apply bg-lime-300
+}
+
+.weather > img{
+  @apply w-9 h-9
+}
+
+.label-tooltip{
+  @apply bg-gray-500 text-white p-3 m-3 rounded-lg absolute top-2 left-3 opacity-0
+}
+
+.label:hover > .label-tooltip{
+  @apply opacity-100
+}

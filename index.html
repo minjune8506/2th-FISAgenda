@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen">
+  <head>
+    <link rel="icon" href="src/images/favicon.ico">
+    <meta name="description" content="우리FISA 시간표">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <link rel="stylesheet" href="dist/output.css" />
+    <title>WOORI FISA GENDA</title>
+	  <script type="module" src="./src/js/calendar.js" defer></script>
+    <script type="module" src="./src/js/calendarButton.js" defer></script>
+    <script type="module" src="src/js/calendarLabel.js"></script>
+    <script type="module" src="./src/js/weather.js" defer></script>
+  </head>
+  <body class="h-full flex flex-col">
+    <header>
+		<div class="flex justify-center mb-2 pt-2">
+      		<img src="src/images/logo.png" class="w-8, h-8" alt="우리은행로고"/>
+			<div class="text-2xl font-bold inline pl-2">
+				<span class="text-blue-700">WOORI FISA</span>
+				<span class="text-purple-800">GENDA</span>
+			</div>
+		</div>
+    </header>
+
+    <main id="App" class="flex flex-col flex-1">
+      <div
+        class="flex gap-2 h-12 text-center items-center w-full justify-between space-x-40 border border-neutral-200 px-40"
+      >
+        <button id="prevButton"><img src="src/images/prevButton.svg" alt="이전 월로 이동하는 버튼"></button>
+        <div class="text-2xl flex gap-14">
+          <select id="month-select">
+            <option selected>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+          </select>
+          <span>2023</span>
+        </div>
+        <button id="nextButton"><img src="src/images/nextButton.svg" alt="다음 월로 이동하는 버튼"></button>
+      </div>
+
+      <table class="w-full table-border table-fixed border-collapse h-full">
+        <thead>
+          <tr class="table-border font-bold">
+            <td class="header-td table-border w-1/7">Sunday</td>
+            <td class="header-td table-border w-1/7">Monday</td>
+            <td class="header-td table-border w-1/7">Tuesday</td>
+            <td class="header-td table-border w-1/7">Wednesday</td>
+            <td class="header-td table-border w-1/7">Thursday</td>
+            <td class="header-td table-border w-1/7">Friday</td>
+            <td class="header-td table-border w-1/7">Saturday</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+  </body>
+</html>
