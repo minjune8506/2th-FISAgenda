@@ -71,3 +71,25 @@ button:disabled >img{
 select{
   cursor: pointer;
 }
+
+.project {
+	@apply bg-orange-300
+
+}
+
+.experience {
+	@apply bg-pink-400
+
+}
+
+.lecture {
+	@apply bg-violet-300
+}
+
+.today {
+	@apply border-2 border-gray-400
+}
+
+.biz {
+	@apply bg-lime-300
+}

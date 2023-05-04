@@ -24,13 +24,19 @@ const monthSelect = document.getElementById('month-select');
 
 const monthChange = () => {
 	month = MONTHS.indexOf(monthSelect.value);
+	if (month === 4) {
+		prevBtn.disabled = true;
+	}
+	if (month === 8) {
+		nextBtn.disabled = true;
+	}
 	createCalendar(YEAR, month);
 };
 const addMonth = () => {
 	month += 1;
 	nextBtn.disabled = false;
 	prevBtn.disabled = false;
-	if (month > 8) {
+	if (month >= 8) {
 		month = 8;
 		nextBtn.disabled = true;
 	}
@@ -41,7 +47,7 @@ const subMonth = () => {
 	month -= 1;
 	nextBtn.disabled = false;
 	prevBtn.disabled = false;
-	if (month < 4) {
+	if (month <= 4) {
 		month = 4;
 		prevBtn.disabled = true;
 	}
