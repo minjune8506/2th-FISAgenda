@@ -97,7 +97,7 @@ function createLabels(labels) {
 
 function createDateElement(date, day, weatherImages, labels = []) {
 	const td = document.createElement('td');
-	td.classList = ['table-border'];
+	td.classList.add('table-border');
 
 	const topDiv = createTopDiv(date, day, weatherImages);
 	td.appendChild(topDiv);
@@ -124,7 +124,12 @@ function createPrefix(year, monthIdx, weeks) {
 	for (let i = 0; i < firstDay; i += 1) {
 		const date = pastMonthLastDate - (firstDay - i - 1);
 		const day = new Date(year, monthIdx - 1, date);
-		const el = createDateElement(day.getDate(), day.getDay(), null, getLabel(day));
+		const el = createDateElement(
+			day.getDate(),
+			day.getDay(),
+			null,
+			getLabel(day),
+		);
 		el.classList.add('bg-gray-200');
 		el.classList.add('opacity-30');
 		tr.appendChild(el);
@@ -172,7 +177,7 @@ export default async function createCalendar(year, monthIdx) {
 
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
-			tr.classList = [`h-1/${weeks}`];
+			tr.classList.add(`h-1/${weeks}`);
 			tbody.appendChild(tr);
 		}
 
