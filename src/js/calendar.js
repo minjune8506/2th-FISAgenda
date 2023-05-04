@@ -86,7 +86,6 @@ function createTopDiv(date, day, weatherImages) {
 function createLabels(labels) {
 	const labelDivs = labels.map((v) => {
 		const label = document.createElement('div');
-		label.classList = [];
 		label.innerHTML = `
 		  <div class='${v[1]}'><p>${v[0]}</p></div>
 		  `;
@@ -99,13 +98,21 @@ function createDateElement(date, day, weatherImages, labels = []) {
 	const td = document.createElement('td');
 	td.classList.add('table-border');
 
+	const tdDiv = document.createElement('div');
+	tdDiv.style.width = '100%';
+	tdDiv.style.height = '100%';
+	td.appendChild(tdDiv);
+
 	const topDiv = createTopDiv(date, day, weatherImages);
-	td.appendChild(topDiv);
+	tdDiv.appendChild(topDiv);
 
 	const content = document.createElement('div');
 	content.classList.add('h-2/3');
 	content.classList.add('label-container');
-	td.appendChild(content);
+	content.classList.add('flex');
+	content.classList.add('flex-col');
+	content.classList.add('gap-1');
+	tdDiv.appendChild(content);
 
 	// add label
 	createLabels(labels).forEach((label) => content.appendChild(label));
@@ -117,7 +124,7 @@ function createPrefix(year, monthIdx, weeks) {
 	const firstDay = getFirstDayOfMonth(year, monthIdx);
 	const pastMonthLastDate = getLastDateOfMonth(year, monthIdx - 1);
 	const tr = document.createElement('tr');
-	tr.classList.add(`h-1/${weeks}`);
+	tr.classList.add(`h-auto`);
 
 	tbody.appendChild(tr);
 
@@ -139,7 +146,7 @@ function createPrefix(year, monthIdx, weeks) {
 function createSuffix(year, monthIdx, weeks) {
 	const lastDay = getLastDayOfMonth(year, monthIdx);
 	const tr = tbody.lastElementChild;
-	tr.classList = [`h-1/${weeks}`];
+	tr.classList = [`h-auto`];
 
 	for (let i = 1; i <= 6 - lastDay; i += 1) {
 		const day = new Date(year, monthIdx + 1, i);
@@ -173,16 +180,18 @@ export default async function createCalendar(year, monthIdx) {
 	for (let i = 1; i <= lastDate; i += 1) {
 		const date = new Date(year, monthIdx, i);
 
-		const labels = await getLabel(date)
+		const labels = await getLabel(date);
 
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
-			tr.classList.add(`h-1/${weeks}`);
+			tr.classList.add(`h-auto`);
 			tbody.appendChild(tr);
 		}
 
 		const day = new Date(year, monthIdx, i).getDay();
 		const el = createDateElement(i, day, weatherImages, labels);
+		if (monthIdx === today.getMonth() && i === today.getDate())
+			el.classList.add('today');
 		tr.appendChild(el);
 	}
 
