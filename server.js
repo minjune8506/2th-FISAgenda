@@ -4,7 +4,6 @@ const cors = require('cors');
 const fb = require('firebase/database');
 const admin = require('firebase/app');
 const db = require('./config.js');
-// const cors = require('cors')
 const database = admin.initializeApp(db);
 
 const realTimeDatabase = fb.getDatabase(database);
