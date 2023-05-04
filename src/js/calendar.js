@@ -1,5 +1,5 @@
 import { getWeatherImages } from './weather.js';
-import { getLabel } from '../js/calendarLabel.js';
+import { getLabel } from './calendarLabel.js';
 
 const SUNDAY = 0;
 const SATURDAY = 6;
@@ -97,7 +97,7 @@ function createLabels(labels) {
 
 function createDateElement(date, day, weatherImages, labels = []) {
 	const td = document.createElement('td');
-	td.classList = ['table-border'];
+	td.classList.add('table-border');
 
 	const topDiv = createTopDiv(date, day, weatherImages);
 	td.appendChild(topDiv);
@@ -124,7 +124,12 @@ function createPrefix(year, monthIdx, weeks) {
 	for (let i = 0; i < firstDay; i += 1) {
 		const date = pastMonthLastDate - (firstDay - i - 1);
 		const day = new Date(year, monthIdx - 1, date);
-		const el = createDateElement(day.getDate(), day.getDay(), null, getLabel(day));
+		const el = createDateElement(
+			day.getDate(),
+			day.getDay(),
+			null,
+			getLabel(day),
+		);
 		el.classList.add('bg-gray-200');
 		el.classList.add('opacity-30');
 		tr.appendChild(el);
@@ -168,11 +173,11 @@ export default async function createCalendar(year, monthIdx) {
 	for (let i = 1; i <= lastDate; i += 1) {
 		const date = new Date(year, monthIdx, i);
 
-		const labels = getLabel(date);
+		const labels = await getLabel(date)
 
 		if (!(tr.childElementCount % NUMBER_OF_DAYS_OF_WEEK)) {
 			tr = document.createElement('tr');
-			tr.classList = [`h-1/${weeks}`];
+			tr.classList.add(`h-1/${weeks}`);
 			tbody.appendChild(tr);
 		}
 

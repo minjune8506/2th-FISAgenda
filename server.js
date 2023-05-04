@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require('cors')
 const fb = require('firebase/database')
 const admin = require('firebase/app')
 const db= require('./config.js');
@@ -17,7 +18,11 @@ const NIGHT = 18;
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use('/public', express.static(__dirname + "/public"));
+app.use(cors())
+// 미들웨어 설정
+app.use(express.json()) //역질렬화 처리용 모듈
+
 
 app.get('/weather', async (req, res, next) => {
 	const url = `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${WEATHER_APP_ID}&lang=kr`;
@@ -58,10 +63,13 @@ app.get('/schedule', function(req, res){
 
 app.post('/save', function(req, res){
 
+	console.log(req.body);
+
 	fb.set(fb.ref(realTimeDatabase, 'schedule/' + req.body.scheduleId), {
 		startDate: req.body.startDate,
 		endDate: req.body.endDate,
-		content: req.body.content
+		edu: req.body.edu,
+		detail: req.body.detail
 	})
 	return res.json({id: req.body.scheduleId})
 })

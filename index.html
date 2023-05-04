@@ -29,7 +29,7 @@
         <button id="prevButton"><img src="src/images/prevButton.svg" alt="prevButton"></button>
         <div class="text-2xl flex gap-14">
           <select id="month-select">
-            <option>May</option>
+            <option selected>May</option>
             <option>June</option>
             <option>July</option>
             <option>August</option>
@@ -40,7 +40,7 @@
         <button id="nextButton"><img src="src/images/nextButton.svg" alt="nextButton"></button>
       </div>
 
-      <table class="w-full table-border table-fixed border-collapse flex-1">
+      <table class="w-full table-border table-fixed border-collapse h-full">
         <thead>
           <tr class="table-border font-bold">
             <td class="header-td table-border w-1/7">Sunday</td>
@@ -55,5 +55,8 @@
         <tbody></tbody>
       </table>
     </main>
+    <script type="module" src="src/js/calendar.js"></script>
+    <script type="module" src="src/js/calendarButton.js"></script>
+    <script type="module" src="src/js/calendarLabel.js"></script>
   </body>
 </html>
