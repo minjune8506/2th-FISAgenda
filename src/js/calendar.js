@@ -1,5 +1,5 @@
 import { getWeatherImages } from './weather.js';
-import { getLabel } from '../js/calendarLabel.js';
+import { getLabel } from './calendarLabel.js';
 
 const SUNDAY = 0;
 const SATURDAY = 6;

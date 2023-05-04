@@ -1,7 +1,8 @@
 import { getSchedules } from "./app.js";
 const curriculum = await getSchedules();
+console.log(curriculum);
 
-export const getLabel = async (day) => {
+export const getLabel = (day) => {
 	const result = [];
 	let title = `&nbsp;`;
 	curriculum.forEach((v) => {
